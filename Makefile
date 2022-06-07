@@ -5,3 +5,6 @@ PACKAGES = pydra
 install:
 	@$(POETRY) install
 
+.PHONY: test
+test:
+	@$(POETRY) run python -m pytest
