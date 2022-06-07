@@ -5,6 +5,10 @@ PACKAGES = pydra
 install:
 	@$(POETRY) install
 
+.PHONY: install-docs
+install-docs:
+	@$(POETRY) install --extras docs
+
 .PHONY: test
 test:
 	@$(POETRY) run python -m pytest
@@ -35,3 +39,10 @@ lint-isort:
 	$(info Linting code with isort)
 	@$(POETRY) run isort --quiet --check --diff $(PACKAGES)
 
+.PHONY: clean-docs
+clean-docs: docs/_build
+	@$(MAKE) -C docs clean
+
+.PHONY: docs
+docs: clean-docs
+	@$(POETRY) run make -C docs html
