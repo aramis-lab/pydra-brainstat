@@ -5,9 +5,9 @@ Pydra tasks for BrainStat.
 [Pydra] is a dataflow engine which provides a set of lightweight abstractions
 for DAG construction, manipulation, and distributed execution.
 
-[Brainstat] A statistics and context decoding toolbox for neuroimaging.
+[BrainStat] is a statistics and context decoding toolbox for neuroimaging.
 
-This project exposes selected Brainstats's utilities as Pydra tasks to
+This project exposes selected BrainStats's utilities as Pydra tasks to
 facilitate their incorporation into more advanced processing workflows.
 
 ## Development
@@ -43,5 +43,5 @@ make format
 This project is released under the terms of the Apache License 2.0.
 
 [Pydra]: https://python-poetry.org
-[Brainstat]: https://brainstat.readthedocs.io
+[BrainStat]: https://brainstat.readthedocs.io
 [Poetry]: https://python-poetry.org
