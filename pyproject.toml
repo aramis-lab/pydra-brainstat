@@ -7,7 +7,7 @@ license = "Apache-2.0"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pydra = "^0.18"
+pydra = "^0.20"
 Sphinx = {version = "^5.0.0", optional = true}
 
 [tool.poetry.dev-dependencies]
