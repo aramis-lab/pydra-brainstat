@@ -1,25 +1,51 @@
 POETRY ?= poetry
 PACKAGES = pydra
-CONDA ?= conda
 
-.PHONY: env
-env:
-	@$(CONDA) create -y -p ./.venv poetry
+all: install check test
 
-.PHONY: install
-install:
-	@$(POETRY) install
+.PHONY: check
+check: check-black check-isort
 
-.PHONY: install-docs
-install-docs:
-	@$(POETRY) install --extras docs
+.PHONY: check-black
+check-black:
+	$(info Checking code with black)
+	@$(POETRY) run black --check --diff $(PACKAGES)
 
-.PHONY: install-test
-install-test: install
+.PHONY: check-isort
+check-isort:
+	$(info Checking code with isort)
+	@$(POETRY) run isort --check --diff $(PACKAGES)
 
-.PHONY: test
-test: install-test
-	@$(POETRY) run python -m pytest
+.PHONY: check-lock
+check-lock:
+	@$(POETRY) lock --check
+
+.PHONY: clean
+clean: clean-dist clean-docs clean-py clean-test
+	@$(RM) $(INSTALL_STAMP)
+
+.PHONY: clean-dist
+clean-dist:
+	@$(RM) -r dist
+
+.PHONY: clean-docs
+clean-docs:
+	@$(RM) -r docs/_build
+
+.PHONY: clean-py
+clean-py:
+	@find . -name __pycache__ -exec $(RM) -r {} +
+
+.PHONY: clean-test
+clean-test:
+	@$(RM) -r .pytest_cache
+
+dist: clean-dist
+	@$(POETRY) build
+
+.PHONY: docs
+docs: clean-docs
+	@$(POETRY) run make -C docs html
 
 .PHONY: format
 format: format-black format-isort
@@ -34,23 +60,18 @@ format-isort:
 	$(info Formatting code with isort)
 	@$(POETRY) run isort --quiet $(PACKAGES)
 
-.PHONY: lint
-lint: lint-black lint-isort
+.PHONY: install
+install: check-lock
+	@$(POETRY) install
 
-.PHONY: lint-black
-lint-black:
-	$(info Linting code with black)
-	@$(POETRY) run black --quiet --check --diff $(PACKAGES)
+.PHONY: lock
+lock:
+	@$(POETRY) lock --no-update
 
-.PHONY: lint-isort
-lint-isort:
-	$(info Linting code with isort)
-	@$(POETRY) run isort --quiet --check --diff $(PACKAGES)
+.PHONY: test
+test: clean-test
+	@$(POETRY) run pytest
 
-.PHONY: clean-docs
-clean-docs: docs/_build
-	@$(MAKE) -C docs clean
-
-.PHONY: docs
-docs: install-docs clean-docs
-	@$(POETRY) run make -C docs html
+.PHONY: update
+update:
+	@$(POETRY) update
