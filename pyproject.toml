@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [{include = "pydra"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.11"
 pydra = "^0.20"
 brainstat = "^0.4.2"
 
