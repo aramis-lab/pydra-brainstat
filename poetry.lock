@@ -1861,14 +1861,14 @@ test = ["pydata-sphinx-theme[doc]", "pytest"]
 
 [[package]]
 name = "pydra"
-version = "0.21"
+version = "0.22"
 description = "Pydra dataflow engine"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pydra-0.21-py3-none-any.whl", hash = "sha256:188cd8ff6e8b819104bce22cd51b00af5f1e4802fa30b08a801a78661ac66e14"},
-    {file = "pydra-0.21.tar.gz", hash = "sha256:93209b7840537a3a1aeb449eb0a052fc02ab879d2c512c6441b8e94dbeaa45e2"},
+    {file = "pydra-0.22-py3-none-any.whl", hash = "sha256:b764b147f80e19ca900ab15bbccc2e16529d353019b6d26285a1ba0bd2c2efde"},
+    {file = "pydra-0.22.tar.gz", hash = "sha256:8e37e621f61c76e54b82dfbb1b53fe46dd117c76872d9e2ac2b4c7b95fb89d4c"},
 ]
 
 [package.dependencies]
@@ -2928,4 +2928,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "7bccb5acdc00e2c8c79b4da2f7dc6edaaaf8605f3ea08022eabae8e3ca1795b8"
+content-hash = "e62988c39dacf1cdec444a62b3537301fdafc0862e274d9786ce39fd73e8fe42"
