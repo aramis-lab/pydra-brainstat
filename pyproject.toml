@@ -9,7 +9,7 @@ packages = [{include = "pydra"}]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
-pydra = "^0.21"
+pydra = "^0.22"
 brainstat = "^0.4.2"
 
 [tool.poetry.group.dev.dependencies]
