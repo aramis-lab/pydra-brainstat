@@ -1,49 +1,46 @@
 name: docs
 
 on:
-  # Tigger this workflow on push events to the main branch.
   push:
-    branches:
-      - main
-  # Trigger this workflow on pull request events to the main branch.
+    paths:
+      - '.github/workflows/docs.yaml'
+      - 'docs/**'
+      - 'pydra/**'
   pull_request:
-    branches:
-      - main
-  # Run this workflow manually from the Actions tab.
+    paths:
+      - '.github/workflows/docs.yaml'
+      - 'docs/**'
+      - 'pydra/**'
   workflow_dispatch:
 
-# Set permissions of the GITHUB_TOKEN to enable deployment to GitHub Pages.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Set default Python version for jobs.
-env:
-    DEFAULT_PYTHON_VERSION: '3.10'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
 
 jobs:
-  # Build the documentation.
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: snok/install-poetry@v1
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
-          cache: poetry
-      - name: Install dependencies
-        run: make install
+          python-version: '3.x'
+      - name: Install Hatch
+        run: pipx install hatch
       - name: Build documentation
-        run: make docs
+        run: hatch run docs:build
       - name: Upload documentation
         uses: actions/upload-artifact@v3
         with:
           name: docs
-          path: ./docs/_build/html
+          path: 'docs/_build/html'
+          retention-days: 1
 
-  # Deploy the documentation if on main branch.
   deploy:
     needs: build
     if: contains('refs/heads/main', github.ref)
