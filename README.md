@@ -1,47 +1,58 @@
 # pydra-brainstat
 
+![][status-docs]
+![][status-test]
+
+----
+
 Pydra tasks for BrainStat.
 
-[Pydra] is a dataflow engine which provides a set of lightweight abstractions
+[Pydra][pydra] is a dataflow engine
+ which provides a set of lightweight abstractions
 for DAG construction, manipulation, and distributed execution.
 
-[BrainStat] is a statistics and context decoding toolbox for neuroimaging.
+[BrainStat][brainstat] is a statistics and context decoding toolbox for neuroimaging.
 
-This project exposes selected BrainStats's utilities as Pydra tasks to
-facilitate their incorporation into more advanced processing workflows.
+This project exposes selected BrainStats's utilities as Pydra tasks
+to facilitate their incorporation into more advanced processing workflows.
 
 ## Development
 
-Setup for development requires [Poetry].
-
-Install the project and its dependencies with:
+This project is managed with [Hatch][hatch]:
 
 ```console
-make install
+pipx install hatch
 ```
 
-Run the tests with:
+To run the test suite:
 
 ```console
-make test
+hatch run test
 ```
 
-Build the project's documentation with:
+To fix linting issues:
 
 ```console
-make docs
+hatch run lint:fix
 ```
 
-Format the code before review with:
+To check the documentation:
 
 ```console
-make format
+hatch run docs:serve --open-browser
 ```
 
 ## Licensing
 
-This project is released under the terms of the Apache License 2.0.
+This project is distributed under the terms of the [Apache License, Version 2.0][license].
 
-[Pydra]: https://python-poetry.org
-[BrainStat]: https://brainstat.readthedocs.io
-[Poetry]: https://python-poetry.org
+
+[brainstat]: https://brainstat.readthedocs.io
+
+[license]: https://opensource.org/licenses/Apache-2.0
+
+[pydra]: https://nipype.github.io/pydra
+
+[status-docs]: https://github.com/aramis-lab/pydra-brainstat/actions/workflows/docs.yaml/badge.svg
+
+[status-test]: https://github.com/aramis-lab/pydra-brainstat/actions/workflows/test.yaml/badge.svg
