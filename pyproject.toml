@@ -7,7 +7,7 @@ name = "pydra-brainstat"
 version = "0.0.0"
 description = "Pydra tasks for BrainStat"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 license = "Apache-2.0"
 keywords = ["pydra", "neuroimaging", "brainstat"]
 authors = [
@@ -19,11 +19,11 @@ classifiers = [
   "License :: OSI Approved :: Apache Software License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Topic :: Scientific/Engineering",
   "Topic :: Software Development :: Libraries",
 ]
@@ -39,7 +39,7 @@ Issues = "https://github.com/aramis-lab/pydra-brainstat/issues"
 Source = "https://github.com/aramis-lab/pydra-brainstat"
 
 [tool.black]
-target-version = ["py37"]
+target-version = ["py311"]
 line-length = 120
 
 [tool.isort]
